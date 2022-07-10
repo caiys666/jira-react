@@ -30,3 +30,4 @@ yarn-error.log*
 .prettierignore 
 .prettierignore 
 .prettierignore 
+__json_server_mock__/db.json
