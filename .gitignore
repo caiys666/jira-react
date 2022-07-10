@@ -6,6 +6,10 @@
 .pnp.js
 /yarn.lock
 /package-lock.json
+.prettierrc.json
+/commitlint.config.js
+/.husky
+.prettierignore 
 
 # testing
 /coverage
@@ -23,3 +27,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+.prettierignore 
+.prettierignore 
+.prettierignore 
