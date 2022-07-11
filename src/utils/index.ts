@@ -5,17 +5,19 @@ import { useEffect, useState } from "react";
  * @param {对象属性} value
  * @returns
  */
-export const isFalsy = (value) => (value === 0 ? false : !value);
+export const isFalsy = (value: any) => (value === 0 ? false : !value);
 /**
  *  请求的时候如果没有值删除属性
  * @param {源对象} object
  * @returns {目标对象} result
  */
-export const cleanObject = (object) => {
+export const cleanObject = (object: object) => {
   const result = { ...object };
   Object.keys(result).forEach((key) => {
+    // @ts-ignore
     const value = result[key];
     if (isFalsy(value)) {
+      // @ts-ignore
       delete result[key];
     }
   });
@@ -26,7 +28,7 @@ export const cleanObject = (object) => {
  * 自定义customHook
  * @param {回调函数} callback
  */
-export const useMount = (callback) => {
+export const useMount = (callback: () => void) => {
   useEffect(() => {
     callback();
   }, []);
@@ -37,7 +39,7 @@ export const useMount = (callback) => {
  * @param {需要监听的值} value
  * @param {延迟} delay
  */
-export const useDebounce = (value, delay) => {
+export const useDebounce = (value: any, delay?: number) => {
   const [debounceValue, setDebounceValue] = useState(value);
 
   useEffect(() => {

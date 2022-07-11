@@ -13,7 +13,7 @@ export const ProjectListScreen = () => {
   });
   const [users, setUsers] = useState([]);
   const [list, setList] = useState([]);
-  const debounceParams = useDebounce(params, 2000);
+  const debounceParams = useDebounce(params, 200);
   useEffect(() => {
     fetch(
       `${apiUrl}/projects?${qs.stringify(cleanObject(debounceParams))}`
@@ -33,7 +33,7 @@ export const ProjectListScreen = () => {
   return (
     <div>
       <SearchPanel params={params} setParams={setParams} users={users} />
-      <List list={list} setList={setList} users={users} />
+      <List list={list} users={users} />
     </div>
   );
 };
