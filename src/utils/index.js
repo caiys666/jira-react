@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 /**
  * 判断属性是否为0这种特殊场景
  * @param {对象属性} value
@@ -18,4 +20,31 @@ export const cleanObject = (object) => {
     }
   });
   return result;
+};
+
+/**
+ * 自定义customHook
+ * @param {回调函数} callback
+ */
+export const useMount = (callback) => {
+  useEffect(() => {
+    callback();
+  }, []);
+};
+
+/**
+ * 进行截流请求
+ * @param {需要监听的值} value
+ * @param {延迟} delay
+ */
+export const useDebounce = (value, delay) => {
+  const [debounceValue, setDebounceValue] = useState(value);
+
+  useEffect(() => {
+    // 每次在value变化以后，设置一个定时器
+    const timeout = setTimeout(() => setDebounceValue(value), delay);
+    // 每次在上一次useEffect处理完以后再运行
+    return () => clearTimeout(timeout);
+  }, [value, delay]);
+  return debounceValue;
 };
