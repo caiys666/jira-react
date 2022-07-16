@@ -50,3 +50,23 @@ export const useDebounce = <V>(value: V, delay?: number): V => {
   }, [value, delay]);
   return debounceValue;
 };
+
+/**
+ * 自定义用户数组操作hook、并且使用泛型进行类型指定
+ * @param value 用户数组数据
+ * @returns 用户数组数据，添加以及删除的方法
+ */
+export const useArray = <T>(initValue: T[]) => {
+  const [persons, setPersons] = useState(initValue);
+  return {
+    persons,
+    setPersons,
+    addUser: (person: T) => setPersons([...persons, person]),
+    removeIndex: (index: number) => {
+      const copy = [...persons];
+      copy.splice(index, 1);
+      setPersons(copy);
+    },
+    clear: () => setPersons([]),
+  };
+};
