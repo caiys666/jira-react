@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
  * @param {对象属性} value
  * @returns
  */
-export const isFalsy = (value: any) => (value === 0 ? false : !value);
+export const isFalsy = (value: unknown) => (value === 0 ? false : !value);
 /**
  *  请求的时候如果没有值删除属性
  * @param {源对象} object
@@ -39,7 +39,7 @@ export const useMount = (callback: () => void) => {
  * @param {需要监听的值} value
  * @param {延迟} delay
  */
-export const useDebounce = (value: any, delay?: number) => {
+export const useDebounce = <V>(value: V, delay?: number): V => {
   const [debounceValue, setDebounceValue] = useState(value);
 
   useEffect(() => {
