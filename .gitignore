@@ -30,3 +30,4 @@ yarn-error.log*
 .prettierignore 
 __json_server_mock__/db.json
 __json_server_mock__/middleware.js
+public/mockServiceWorker.js
