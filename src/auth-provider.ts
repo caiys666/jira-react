@@ -14,7 +14,7 @@ export const handleUserResponse = ({ user }: { user: User }) => {
  * @param data 用户名和密码
  */
 export const login = (data: { username: string; password: string }) => {
-  fetch(`${apiUrl}/login`, {
+  return fetch(`${apiUrl}/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -23,6 +23,8 @@ export const login = (data: { username: string; password: string }) => {
   }).then(async (response) => {
     if (response.ok) {
       return handleUserResponse(await response.json());
+    } else {
+      return Promise.reject(data);
     }
   });
 };
@@ -32,7 +34,7 @@ export const login = (data: { username: string; password: string }) => {
  * @param data 用户名和密码
  */
 export const register = (data: { username: string; password: string }) => {
-  fetch(`${apiUrl}/register`, {
+  return fetch(`${apiUrl}/register`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -41,6 +43,8 @@ export const register = (data: { username: string; password: string }) => {
   }).then(async (response) => {
     if (response.ok) {
       return handleUserResponse(await response.json());
+    } else {
+      return Promise.reject(data);
     }
   });
 };
@@ -49,4 +53,5 @@ export const register = (data: { username: string; password: string }) => {
  * 注销
  * @returns
  */
-export const logout = () => window.localStorage.removeItem(localStorageKey);
+export const logout = async () =>
+  window.localStorage.removeItem(localStorageKey);
