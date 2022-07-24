@@ -5,6 +5,7 @@ import { cleanObject, useDebounce, useMount } from "utils";
 import { useHttp } from "utils/http";
 import { List } from "./list";
 import { SearchPanel } from "./search-panel";
+import styled from "@emotion/styled";
 
 const apiUrl = process.env.REACT_APP_API_URL;
 export const ProjectListScreen = () => {
@@ -23,9 +24,13 @@ export const ProjectListScreen = () => {
     client("users", {}).then(setUsers);
   });
   return (
-    <div>
+    <Container>
       <SearchPanel params={params} setParams={setParams} users={users} />
       <List list={list} users={users} />
-    </div>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  padding: 3.2rem;
+`;
